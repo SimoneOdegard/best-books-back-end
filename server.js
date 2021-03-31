@@ -37,44 +37,16 @@ const jacob = new User ({
 jacob.save();
 console.log(jacob.books);
 
-
-// const simone = new User ({
-//   email: 'team.steele@gmail.com',
-//   books: [
-//     {name: 'Holes', description: 'A book about diggin holes and findin freedom', status: 'read'},
-//     {name: 'Gossip Girl', description: 'Hey uppereast siders, this is about the scandals of the elite of Manhattan.', status: 'read'},
-//     {name: 'Demon Slayer Manga', description: 'This is about a Demon Slayer', status: 'read'}
-//   ]
-// })
-// simone.save();
-// console.log('jfdoafjdsoiajfoajdsoa', simone.books);
-
-const chance = new User ({
-  email: 'team.steele2@gmail.com',
+const simone = new User ({
+  email: 'team.steele@gmail.com',
   books: [
     {name: 'Holes', description: 'A book about diggin holes and findin freedom', status: 'read'},
     {name: 'Gossip Girl', description: 'Hey uppereast siders, this is about the scandals of the elite of Manhattan.', status: 'read'},
     {name: 'Demon Slayer Manga', description: 'This is about a Demon Slayer', status: 'read'}
   ]
 })
-chance.save();
-console.log('jfdoafjdsoiajfoajdsoa', chance.books);
-
-const simone3 = new User ({
-  email: 'team.steele3@gmail.com',
-  books: [
-    {name: 'Holes', description: 'A book about diggin holes and findin freedom', status: 'read'},
-    {name: 'Gossip Girl', description: 'Hey uppereast siders, this is about the scandals of the elite of Manhattan.', status: 'read'},
-    {name: 'Demon Slayer Manga', description: 'This is about a Demon Slayer', status: 'read'}
-  ]
-})
-simone3.save();
-console.log('jfdoafjdsoiajfoajdsoa', simone3.books);
-
-User.find({email: 'team.steele3@gmail.com'}, function (err, items) {
-  if (err) return console.error(err);
-  console.log('testing string', items[0]);
-})
+simone.save();
+console.log('jfdoafjdsoiajfoajdsoa', simone.books);
 
 // routes
 // proof of life
@@ -85,11 +57,11 @@ app.get('/books', getAllBooks)
 
 async function getAllBooks(request, response){
   const email = request.query.email;
-  // console.log('jk',{email})
+  console.log('jk',{email})
   await User.find({email: email}, function (err, items) {
     if (err) return console.error(err);
-    console.log(items[0])
-    response.status(200).send(items[0].books);
+    console.log('hi everyone', items[items.length-1])
+    response.status(200).send(items[items.length-1].books);
   })
   // console.log(email)
 }
