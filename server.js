@@ -61,7 +61,7 @@ chance.save();
 console.log('jfdoafjdsoiajfoajdsoa', chance.books);
 
 const simone3 = new User ({
-  email: 'team.steele2@gmail.com',
+  email: 'team.steele3@gmail.com',
   books: [
     {name: 'Holes', description: 'A book about diggin holes and findin freedom', status: 'read'},
     {name: 'Gossip Girl', description: 'Hey uppereast siders, this is about the scandals of the elite of Manhattan.', status: 'read'},
@@ -71,7 +71,7 @@ const simone3 = new User ({
 simone3.save();
 console.log('jfdoafjdsoiajfoajdsoa', simone3.books);
 
-User.find({email: 'team.steele2@gmail.com'}, function (err, items) {
+User.find({email: 'team.steele3@gmail.com'}, function (err, items) {
   if (err) return console.error(err);
   console.log('testing string', items[0]);
 })
