@@ -14,7 +14,8 @@
 
 ## Change Log
 03-30 2021 1:40pm Set up back-end server
-03-30 201 2:50pm Created storage and initialized mongoose
+03-30 2021 2:50pm Created storage and initialized mongoose
+03-31 2021 4:30pm Created AddABook, DeleteABook
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -34,3 +35,11 @@
 **Start time:** 2:15pm
 **Finish time:** 2:50pm
 **Actual time needed to complete:** 35 minutes
+
+**Navigator:** Simone
+**Driver:** Jacob
+**Name of feature:** create a book, delete a book
+**Estimate of time needed to complete:** 1 hour
+**Start time:** 4:00pm
+**Finish time:** 4:30pm
+**Actual time needed to complete:** 30 minutes

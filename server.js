@@ -19,6 +19,7 @@ const app = express();
 
 // opens up server
 app.use(cors());
+app.use(express.json());
 
 // require
 const User = require('./Models/User');
@@ -53,7 +54,10 @@ console.log('jfdoafjdsoiajfoajdsoa', simone.books);
 app.get('/', function(request, response){
   response.send('Hello World');
 })
-app.get('/books', getAllBooks)
+app.get('/books', getAllBooks);
+app.post('/books', createABook);
+app.delete('/books/:index', deleteABook);
+
 
 async function getAllBooks(request, response){
   const email = request.query.email;
@@ -64,6 +68,33 @@ async function getAllBooks(request, response){
     response.status(200).send(items[items.length-1].books);
   })
   // console.log(email)
+}
+
+async function createABook(request, response){
+  console.log('inside of create a book with request.body', request.body);
+  const email = request.body.email;
+  const book = {name: request.body.name, description: request.body.desciption, status: request.body.status};
+
+  await User.findOne({ email }, (err, entry)=> {
+    if (err) return console.error(err);
+    entry.books.push(books);
+    entry.save();
+    response.status(200).send(entry.books);
+  })
+}
+
+async function deleteABook(request, response){
+  const index = request.params.index;
+  const userEmail = request.query.email;
+
+  User.findOne({ email: userEmail }, (err, entry)=>{
+    const newBookArray = entry.books.filter((book, i)=>{
+      return i !== index;
+    });
+    entry.books = newBookArray;
+    entry.save();
+    response.status(200).send('success');
+  })
 }
 // turn on server
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
