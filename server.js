@@ -57,6 +57,7 @@ app.get('/', function(request, response){
 app.get('/books', getAllBooks);
 app.post('/books', createABook);
 app.delete('/books/:index', deleteABook);
+app.put('/books/:index', updateBooks);
 
 
 async function getAllBooks(request, response){
@@ -86,15 +87,30 @@ async function createABook(request, response){
 async function deleteABook(request, response){
   const index = request.params.index;
   const userEmail = request.query.email;
+  console.log('this is our new book array', index, userEmail);
 
   User.findOne({ email: userEmail }, (err, entry)=>{
     const newBookArray = entry.books.filter((book, i)=>{
-      return i !== index;
+      return i !== parseInt(index);
     });
     entry.books = newBookArray;
     entry.save();
     response.status(200).send('success');
   })
 }
+
+async function updateBooks (request, response) {
+  const index = request.params.index;
+  const booksName = request.body.booksName;
+  const email = request.body.email;
+
+  await User.findOne({name:email}, (err,user) => {
+    const book = { name: booksName }
+    user.books.splice(parseInt(index), 1, book);
+    user.save();
+    response.status(200).send(user.books);
+  })
+}
+
 // turn on server
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
