@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 // require
-const User = require('./Models/User');
+const User = require('./Models/User.js');
 
 // PORT
 const PORT = process.env.PORT || 3002;
@@ -72,8 +72,8 @@ async function getAllBooks(request, response){
 
 async function createABook(request, response){
   console.log('inside of create a book with request.body', request.body);
-  const email = request.body.email;
-  const book = {name: request.body.name, description: request.body.desciption, status: request.body.status};
+  const {email, name, description, status} = request.body; //took out email
+  const books = {name, description, status};
 
   await User.findOne({ email }, (err, entry)=> {
     if (err) return console.error(err);
