@@ -62,10 +62,10 @@ app.delete('/books/:index', deleteABook);
 async function getAllBooks(request, response){
   const email = request.query.email;
   console.log('jk',{email})
-  await User.find({email: email}, function (err, items) {
+  await User.findOne({email: email}, function (err, entry) {
     if (err) return console.error(err);
-    console.log('hi everyone', items[items.length-1])
-    response.status(200).send(items[items.length-1].books);
+    // console.log('hi everyone', items[items.length-1])
+    response.status(200).send(entry.books);
   })
   // console.log(email)
 }
